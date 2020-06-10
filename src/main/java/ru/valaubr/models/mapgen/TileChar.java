@@ -16,5 +16,10 @@ public class TileChar {
 	public static char charDoorV = '-';
 
 	public static char charEnemy = '*';
-	public static char charWayOut = '@';
+	public static char charStartFloor = '!';
+	public static char charNextFloor = '@';
+
+	public static char charWeapon = 'S';
+	public static char charHealingPotion = 'H';
+	public static char charArmor = 'A';
 }

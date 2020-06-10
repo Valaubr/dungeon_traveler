@@ -12,7 +12,7 @@ public class Camera {
     }
 
     public void setPos(double x, double y){
-        camera.setVvalue(x/mapWidth);
-        camera.setHvalue(y/mapHeight);
+        camera.setVvalue(x / mapWidth);
+        camera.setHvalue(y / mapHeight);
     }
 }

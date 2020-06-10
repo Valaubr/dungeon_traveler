@@ -109,6 +109,11 @@ public class BspMapCreator implements CharLevelMapCreator<Consumer> {
             floodFill(map, room, i);
         }
 
+        //stub for selecting spawn
+        //random nodes selection periodically makes exit from the level quite close to the start
+        renderSpawn(map);
+        renderOut(map);
+
         // convert empty tiles into floor
         convertVoid(map);
 
@@ -121,6 +126,28 @@ public class BspMapCreator implements CharLevelMapCreator<Consumer> {
         }
 
         return map;
+    }
+
+    private void renderOut(char[][] map) {
+        for (int i = mapHeight - 1; i > 0; i--) {
+            for (int j = mapWidth - 1; j > 0; j--) {
+                if (map[i][j] == TileChar.charRoomFloor) {
+                    map[i][j] = TileChar.charNextFloor;
+                    return;
+                }
+            }
+        }
+    }
+
+    private void renderSpawn(char[][] map) {
+        for (int i = 0; i < mapWidth; i++) {
+            for (int j = 0; j < mapHeight; j++) {
+                if (map[i][j] == TileChar.charRoomFloor) {
+                    map[i][j] = TileChar.charStartFloor;
+                    return;
+                }
+            }
+        }
     }
 
     @Override
@@ -207,7 +234,11 @@ public class BspMapCreator implements CharLevelMapCreator<Consumer> {
         // room walls
         for (int y = 1; y < mapHeight - 1; y++) {
             for (int x = 1; x < mapWidth - 1; x++) {
-                if (map[y][x] == TileChar.charTemp || map[y][x] == TileChar.charEnemy) {
+                if (map[y][x] == TileChar.charTemp
+                        || map[y][x] == TileChar.charEnemy
+                        || map[y][x] == TileChar.charHealingPotion
+                        || map[y][x] == TileChar.charArmor
+                        || map[y][x] == TileChar.charWeapon) {
                     if (map[y][x - 1] == TileChar.charVoid) {
                         map[y][x] = TileChar.charWall;
                     }
@@ -362,8 +393,14 @@ public class BspMapCreator implements CharLevelMapCreator<Consumer> {
             for (int x = room.x; x < room.x + room.width; x++) {
                 for (int y = room.y; y < room.y + room.height; y++) {
                     if (!isDoor(map, x, y)) {
-                        if (rnd.nextInt(100) > 97) {
+                        if (rnd.nextInt(100) > 96) {
                             map[y][x] = TileChar.charEnemy;
+                        } else if (rnd.nextInt(1000) > 994) {
+                            map[y][x] = TileChar.charWeapon;
+                        } else if (rnd.nextInt(1000) < 6) {
+                            map[y][x] = TileChar.charHealingPotion;
+                        } else if (rnd.nextInt(1000) < 9) {
+                            map[y][x] = TileChar.charArmor;
                         } else {
                             map[y][x] = TileChar.charTemp;
                         }
@@ -371,7 +408,6 @@ public class BspMapCreator implements CharLevelMapCreator<Consumer> {
                 }
             }
         }
-
         renderRooms(map, node.left);
         renderRooms(map, node.right);
     }

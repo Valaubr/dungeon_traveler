@@ -18,7 +18,7 @@ public class Enemy {
 
     //map check supports
     ImageView imageView;
-    Image imgFloor = new Image("/floor0.png");
+    Image imgFloor = new Image("/floor.png");
 
     //move logic
     Random rnd = new Random();
@@ -27,7 +27,7 @@ public class Enemy {
         this.thisEnemy = thisEnemy;
         this.thisLevel = thisLevel;
         this.x = x;
-        this.y = y + 1;
+        this.y = y;
         this.row = thisLevel.getColumnCount();
     }
 
@@ -64,6 +64,14 @@ public class Enemy {
         imageView = (ImageView) thisLevel.getChildren().get(oldPos);
         imageView.setImage(thisEnemy);
         imageView = (ImageView) thisLevel.getChildren().get(newPos);
-        imageView.setImage(new Image("floor0.png"));
+        imageView.setImage(new Image("floor.png"));
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 }

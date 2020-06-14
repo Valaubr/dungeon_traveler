@@ -1,4 +1,4 @@
-package ru.valaubr.controllers;
+package ru.valaubr.models;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

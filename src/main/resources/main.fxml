@@ -14,34 +14,34 @@
                   <Font name="Tempus Sans ITC" size="25.0" />
                </font></Label>
             <ProgressBar fx:id="hp" prefHeight="26.0" prefWidth="187.0" progress="1.0" style="-fx-accent: red;" />
-                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
-            <HBox fx:id="equipment" prefHeight="100.0" prefWidth="200.0">
+            <HBox fx:id="equipment" prefHeight="65.0" prefWidth="187.0">
                <children>
-                  <HBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@bag.png" />
                            </image>
                         </ImageView>
-                        <Label text="Armor" />
+                        <Label text="Empty" />
                         <Label text="0" />
                      </children>
-                  </HBox>
-                  <HBox prefHeight="200.0" prefWidth="100.0">
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" style="-fx-padding: 5px;">
                            <image>
                               <Image url="@bag.png" />
                            </image>
                         </ImageView>
-                        <Label text="Weapon" />
+                        <Label text="Empty" />
                         <Label text="0" />
                      </children>
-                  </HBox>
+                  </VBox>
                </children></HBox>
-                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
             <VBox fx:id="inventory" prefHeight="200.0" prefWidth="100.0" />
+            <Label fx:id="status" prefHeight="27.0" prefWidth="197.0" text="Game Over!" visible="false" />
+            <Button fx:id="restart" mnemonicParsing="false" onMouseClicked="#restartGame" text="Restart" />
             </children>
         </VBox>
         <ScrollPane fx:id="camera" hbarPolicy="NEVER" onKeyPressed="#move" prefHeight="200.0" prefWidth="200.0" vbarPolicy="NEVER">

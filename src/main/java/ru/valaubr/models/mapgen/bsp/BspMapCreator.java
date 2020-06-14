@@ -25,8 +25,8 @@ public class BspMapCreator implements CharLevelMapCreator<Consumer> {
     private int mapHeight;
     private int maxIterations;
     private int minRoomSize;
-    private Map<IntPoint, Integer> roomsByTile;
-    private List<IntRect> rooms;
+    private final Map<IntPoint, Integer> roomsByTile;
+    private final List<IntRect> rooms;
     private Map<Integer, IntRect> roomsByNumber;
     private long seed;
     private PrintStream out;
@@ -238,6 +238,7 @@ public class BspMapCreator implements CharLevelMapCreator<Consumer> {
                         || map[y][x] == TileChar.charEnemy
                         || map[y][x] == TileChar.charHealingPotion
                         || map[y][x] == TileChar.charArmor
+                        || map[y][x] == TileChar.charTrap
                         || map[y][x] == TileChar.charWeapon) {
                     if (map[y][x - 1] == TileChar.charVoid) {
                         map[y][x] = TileChar.charWall;
@@ -401,6 +402,8 @@ public class BspMapCreator implements CharLevelMapCreator<Consumer> {
                             map[y][x] = TileChar.charHealingPotion;
                         } else if (rnd.nextInt(1000) < 9) {
                             map[y][x] = TileChar.charArmor;
+                        } else if (rnd.nextInt(1000) < 15) {
+                            map[y][x] = TileChar.charTrap;
                         } else {
                             map[y][x] = TileChar.charTemp;
                         }

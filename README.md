@@ -1,4 +1,4 @@
-h1 dungeon_traveler (RogueLike game)
+## dungeon_traveler (RogueLike game)
 
 Игра написана на `Java` с применением `JavaFX`
 
